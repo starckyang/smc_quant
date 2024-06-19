@@ -1,23 +1,24 @@
 import requests
 import pandas as pd
 import pickle
-from src.utils import generate_month_intervals
+from src.utils import generate_month_intervals, generate_10_day_intervals
 
+symbol = 'ETHUSDT'
 # Define the host and endpoint
 host = "https://api.binance.com"
 endpoint = "/api/v3/klines"
 
 # Define the parameters
 params = {
-    'symbol': 'BTCUSDT',
-    'interval': '1h',  # Interval is required for klines endpoint
-    "limit": 1000
+    'symbol': symbol,
+    'interval': '15m',  # Interval is required for klines endpoint
+    "limit": 10000
 }
 # Define the start and end times
-start = "2024-01-01"
-end = "2024-05-31"
+start = "2020-01-01"
+end = "2023-12-31"
 
-month_intervals = generate_month_intervals(start, end)
+month_intervals = generate_10_day_intervals(start, end)
 price_df = pd.DataFrame()
 
 for interval in month_intervals:
@@ -100,5 +101,5 @@ for interval in month_intervals:
 
 if not price_df.empty:
     print(price_df)
-    with open('../data/BTCUSDT_testing.pkl', 'wb') as file:
+    with open('../data/{}_training_15m_full.pkl'.format(symbol), 'wb') as file:
         pickle.dump(price_df, file)
