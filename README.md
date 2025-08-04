@@ -45,7 +45,3 @@ Data processing and analytics are handled with **pandas**, **numpy**, and **scip
 - **Binance API**: Market data retrieval
 - **backtesting.py**: Backtesting framework
 - **pandas**, **numpy**, **scipy**: Data processing and analytics
-
----
-
-## 📂 Project Structure
